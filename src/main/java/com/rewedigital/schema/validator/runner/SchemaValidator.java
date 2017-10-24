@@ -1,5 +1,7 @@
 package com.rewedigital.schema.validator.runner;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
@@ -38,7 +40,7 @@ public class SchemaValidator extends Runner {
 
     public SchemaValidator(Class<?> clazz) throws InitializationError, IOException, ProcessingException, IllegalAccessException, InvocationTargetException, InstantiationException {
         objectMapper = new ObjectMapper();
-
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
 
         Schemas providedSchemas = clazz.getAnnotation(Schemas.class);
         if (providedSchemas == null) {
