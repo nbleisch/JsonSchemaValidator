@@ -1,0 +1,31 @@
+group 'com.rewedigital'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.rewedigital'
+            artifactId 'json-schema-validator'
+            version '1.0'
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    compile group: "com.github.java-json-tools", name: "json-schema-validator", version: "2.2.8"
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.fasterxml.jackson:jackson-base:2.9.2'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.2'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.2'
+}
